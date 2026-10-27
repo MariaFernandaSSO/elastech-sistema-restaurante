@@ -1,5 +1,7 @@
 package com.elastech.restaurante.app;
 
+import com.elastech.restaurante.cardapio.ComBaconExtra;
+import com.elastech.restaurante.cardapio.ComCheddar;
 import com.elastech.restaurante.cardapio.ItemCardapio;
 import com.elastech.restaurante.cardapio.Lanche;
 import com.elastech.restaurante.cardapio.LancheFactory;
@@ -24,6 +26,14 @@ public class RestauranteFacade {
             case 3 -> LancheFactory.xBacon();
             default -> throw new IllegalArgumentException("Opcao de lanche invalida.");
         };
+    }
+
+    public ItemCardapio adicionarCheddar(ItemCardapio item) {
+        return new ComCheddar(item);
+    }
+
+    public ItemCardapio adicionarBaconExtra(ItemCardapio item) {
+        return new ComBaconExtra(item);
     }
 
     public Pedido criarPedido(String nomeCliente) {
