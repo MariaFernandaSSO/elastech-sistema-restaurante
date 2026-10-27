@@ -1,6 +1,6 @@
 package com.elastech.restaurante.pedido;
 
-import com.elastech.restaurante.cardapio.Lanche;
+import com.elastech.restaurante.cardapio.ItemCardapio;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class Pedido {
 
     private final int numero;
     private String nomeCliente;
-    private final ArrayList<Lanche> itens = new ArrayList<>();
+    private final ArrayList<ItemCardapio> itens = new ArrayList<>();
 
     public Pedido(int numero, String nomeCliente) {
         this.numero = numero;
@@ -30,20 +30,20 @@ public class Pedido {
         this.nomeCliente = nomeCliente;
     }
 
-    public void adicionarItem(Lanche item) {
+    public void adicionarItem(ItemCardapio item) {
         if (item == null) {
             throw new IllegalArgumentException("O item nao pode ser nulo.");
         }
         itens.add(item);
     }
 
-    public ArrayList<Lanche> getItens() {
+    public ArrayList<ItemCardapio> getItens() {
         return new ArrayList<>(itens);
     }
 
     public double calcularTotal() {
         double total = 0;
-        for (Lanche item : itens) {
+        for (ItemCardapio item : itens) {
             total += item.getPreco();
         }
         return total;

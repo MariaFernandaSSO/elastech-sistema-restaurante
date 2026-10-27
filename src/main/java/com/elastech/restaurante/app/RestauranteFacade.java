@@ -1,6 +1,8 @@
 package com.elastech.restaurante.app;
 
+import com.elastech.restaurante.cardapio.ItemCardapio;
 import com.elastech.restaurante.cardapio.Lanche;
+import com.elastech.restaurante.cardapio.LancheFactory;
 import com.elastech.restaurante.pedido.GerenciadorPedidos;
 import com.elastech.restaurante.pedido.Pedido;
 
@@ -12,18 +14,14 @@ public class RestauranteFacade {
     private final GerenciadorPedidos gerenciador = new GerenciadorPedidos();
 
     public List<Lanche> listarCardapio() {
-        return List.of(
-                new Lanche("X-Burger", 16.00),
-                new Lanche("X-Salada", 18.00),
-                new Lanche("X-Bacon", 22.00)
-        );
+        return List.of(LancheFactory.xBurger(), LancheFactory.xSalada(), LancheFactory.xBacon());
     }
 
     public Lanche criarLanche(int opcao) {
         return switch (opcao) {
-            case 1 -> new Lanche("X-Burger", 16.00);
-            case 2 -> new Lanche("X-Salada", 18.00);
-            case 3 -> new Lanche("X-Bacon", 22.00);
+            case 1 -> LancheFactory.xBurger();
+            case 2 -> LancheFactory.xSalada();
+            case 3 -> LancheFactory.xBacon();
             default -> throw new IllegalArgumentException("Opcao de lanche invalida.");
         };
     }
@@ -40,7 +38,7 @@ public class RestauranteFacade {
         return gerenciador.getPedidos();
     }
 
-    public void adicionarItem(Pedido pedido, Lanche item) {
+    public void adicionarItem(Pedido pedido, ItemCardapio item) {
         pedido.adicionarItem(item);
     }
 

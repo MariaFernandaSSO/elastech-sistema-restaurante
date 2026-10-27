@@ -1,5 +1,6 @@
 package com.elastech.restaurante.app;
 
+import com.elastech.restaurante.cardapio.ItemCardapio;
 import com.elastech.restaurante.cardapio.Lanche;
 import com.elastech.restaurante.pedido.Pedido;
 
@@ -46,7 +47,7 @@ public class MenuConsole {
 
         boolean adicionarMais;
         do {
-            Lanche item = montarItem();
+            ItemCardapio item = montarItem();
             facade.adicionarItem(pedido, item);
             System.out.println("Item adicionado.");
             adicionarMais = lerSimNao("Deseja adicionar outro item? (s/n): ");
@@ -70,24 +71,24 @@ public class MenuConsole {
     private void exibirPedido(Pedido pedido) {
         System.out.println();
         System.out.printf("Pedido %d - Cliente: %s%n", pedido.getNumero(), pedido.getNomeCliente());
-        List<Lanche> itens = pedido.getItens();
+        List<ItemCardapio> itens = pedido.getItens();
         if (itens.isEmpty()) {
             System.out.println("  (sem itens)");
         }
         for (int i = 0; i < itens.size(); i++) {
-            Lanche item = itens.get(i);
-            System.out.printf("  %d. %s - R$ %.2f%n", i + 1, item.getNome(), item.getPreco());
+            ItemCardapio item = itens.get(i);
+            System.out.printf("  %d. %s - R$ %.2f%n", i + 1, item.getDescricao(), item.getPreco());
         }
         System.out.printf("  Total: R$ %.2f%n", pedido.calcularTotal());
     }
 
-    private Lanche montarItem() {
+    private ItemCardapio montarItem() {
         List<Lanche> cardapio = facade.listarCardapio();
         System.out.println();
         System.out.println("=== CARDAPIO ===");
         for (int i = 0; i < cardapio.size(); i++) {
             Lanche lanche = cardapio.get(i);
-            System.out.printf("%d - %s - R$ %.2f%n", i + 1, lanche.getNome(), lanche.getPreco());
+            System.out.printf("%d - %s - R$ %.2f%n", i + 1, lanche.getDescricao(), lanche.getPreco());
         }
 
         int opcao;
