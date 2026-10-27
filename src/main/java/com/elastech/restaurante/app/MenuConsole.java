@@ -100,7 +100,15 @@ public class MenuConsole {
             System.out.println("Lanche invalido. Tente novamente.");
         }
 
-        return facade.criarLanche(opcao);
+        Lanche lanche = facade.criarLanche(opcao);
+        ItemCardapio item = lanche;
+        if (lerSimNao("Adicionar cheddar (+ R$ 4,00)? (s/n): ")) {
+            item = facade.adicionarCheddar(item);
+        }
+        if (lerSimNao("Adicionar bacon extra (+ R$ 6,00)? (s/n): ")) {
+            item = facade.adicionarBaconExtra(item);
+        }
+        return item;
     }
 
     public void fecharRestaurante() {
