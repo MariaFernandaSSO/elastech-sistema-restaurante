@@ -6,6 +6,7 @@ import com.elastech.restaurante.pedido.Pedido;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class MenuConsole {
 
@@ -184,13 +185,18 @@ public class MenuConsole {
 
     public void fecharRestaurante() {
         double total = facade.calcularTotalDoDia();
-        exibirFechamentoDoDia(total);
+        Set<String> combinacoes = facade.getCombinacoesDiferentes();
+        exibirFechamentoDoDia(total, combinacoes);
     }
 
-    public void exibirFechamentoDoDia(double total) {
+    public void exibirFechamentoDoDia(double total, Set<String> combinacoes) {
         System.out.println();
         System.out.println("=== FECHAMENTO DO DIA ===");
         System.out.printf("Total vendido: R$ %.2f%n", total);
+        System.out.printf("Combinacoes diferentes: %d%n", combinacoes.size());
+        for (String combinacao : combinacoes) {
+            System.out.println("  " + combinacao);
+        }
     }
 
     private int lerInteiro(String mensagem) {

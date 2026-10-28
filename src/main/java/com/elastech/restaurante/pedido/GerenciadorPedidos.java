@@ -1,7 +1,11 @@
 package com.elastech.restaurante.pedido;
 
+import com.elastech.restaurante.cardapio.ItemCardapio;
+
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GerenciadorPedidos {
 
@@ -33,5 +37,15 @@ public class GerenciadorPedidos {
             total += pedido.calcularTotal();
         }
         return total;
+    }
+
+    public Set<String> getCombinacoesDiferentes() {
+        HashSet<String> combinacoes = new HashSet<>();
+        for (Pedido pedido : pedidos.values()) {
+            for (ItemCardapio item : pedido.getItens()) {
+                combinacoes.add(item.getDescricao());
+            }
+        }
+        return combinacoes;
     }
 }
