@@ -37,6 +37,13 @@ public class Pedido {
         itens.add(item);
     }
 
+    public void removerItem(int indice) {
+        if (indice < 0 || indice >= itens.size()) {
+            throw new IllegalArgumentException("Indice de item invalido.");
+        }
+        itens.remove(indice);
+    }
+
     public ArrayList<ItemCardapio> getItens() {
         return new ArrayList<>(itens);
     }

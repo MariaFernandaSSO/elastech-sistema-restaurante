@@ -22,7 +22,8 @@ public class MenuConsole {
         System.out.println("=== RESTAURANTE ===");
         System.out.println("1 - Registrar novo pedido");
         System.out.println("2 - Listar pedidos do dia");
-        System.out.println("3 - Fechar restaurante");
+        System.out.println("3 - Modificar pedido");
+        System.out.println("4 - Fechar restaurante");
         System.out.println("0 - Sair");
     }
 
@@ -80,6 +81,63 @@ public class MenuConsole {
             System.out.printf("  %d. %s - R$ %.2f%n", i + 1, item.getDescricao(), item.getPreco());
         }
         System.out.printf("  Total: R$ %.2f%n", pedido.calcularTotal());
+    }
+
+    public void modificarPedido() {
+        int numero = lerInteiro("Numero do pedido: ");
+        Pedido pedido = facade.buscarPedido(numero);
+        if (pedido == null) {
+            System.out.println("Pedido nao encontrado.");
+            return;
+        }
+
+        int opcao;
+        do {
+            exibirPedido(pedido);
+            System.out.println("1 - Acrescentar item");
+            System.out.println("2 - Remover item");
+            System.out.println("3 - Cancelar pedido");
+            System.out.println("0 - Voltar");
+            opcao = lerInteiro("Opcao: ");
+
+            switch (opcao) {
+                case 1 -> {
+                    ItemCardapio item = montarItem();
+                    facade.adicionarItem(pedido, item);
+                    System.out.println("Item adicionado.");
+                }
+                case 2 -> removerItem(pedido);
+                case 3 -> {
+                    if (facade.cancelarPedido(numero)) {
+                        System.out.println("Pedido cancelado.");
+                    } else {
+                        System.out.println("Pedido nao encontrado.");
+                    }
+                    opcao = 0;
+                }
+                case 0 -> {
+                }
+                default -> opcaoInvalida();
+            }
+        } while (opcao != 0);
+    }
+
+    private void removerItem(Pedido pedido) {
+        List<ItemCardapio> itens = pedido.getItens();
+        if (itens.isEmpty()) {
+            System.out.println("O pedido nao possui itens.");
+            return;
+        }
+        for (int i = 0; i < itens.size(); i++) {
+            System.out.printf("%d - %s%n", i + 1, itens.get(i).getDescricao());
+        }
+        int indice = lerInteiro("Numero do item: ");
+        if (indice < 1 || indice > itens.size()) {
+            System.out.println("Item invalido.");
+            return;
+        }
+        facade.removerItem(pedido, indice - 1);
+        System.out.println("Item removido.");
     }
 
     private ItemCardapio montarItem() {
