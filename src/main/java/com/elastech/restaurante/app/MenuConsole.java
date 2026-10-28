@@ -4,6 +4,7 @@ import com.elastech.restaurante.cardapio.ItemCardapio;
 import com.elastech.restaurante.cardapio.Lanche;
 import com.elastech.restaurante.pedido.Pedido;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -200,10 +201,17 @@ public class MenuConsole {
     }
 
     private int lerInteiro(String mensagem) {
-        System.out.print(mensagem);
-        int valor = scanner.nextInt();
-        scanner.nextLine();
-        return valor;
+        while (true) {
+            System.out.print(mensagem);
+            try {
+                int valor = scanner.nextInt();
+                scanner.nextLine();
+                return valor;
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada invalida. Digite um numero.");
+                scanner.nextLine();
+            }
+        }
     }
 
     private String lerTexto(String mensagem) {
