@@ -10,6 +10,7 @@ import com.elastech.restaurante.pedido.Pedido;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public class RestauranteFacade {
 
@@ -62,5 +63,9 @@ public class RestauranteFacade {
 
     public double calcularTotalDoDia() {
         return gerenciador.calcularTotalDoDia();
+    }
+
+    public Set<String> getCombinacoesDiferentes() {
+        return gerenciador.getCombinacoesDiferentes();
     }
 }
