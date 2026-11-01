@@ -15,7 +15,8 @@ public class Main {
                 switch (opcao) {
                     case 1 -> menu.registrarPedido();
                     case 2 -> menu.listarPedidos();
-                    case 3 -> menu.fecharRestaurante();
+                    case 3 -> menu.modificarPedido();
+                    case 4 -> menu.fecharRestaurante();
                     case 0 -> {
                     }
                     default -> menu.opcaoInvalida();
