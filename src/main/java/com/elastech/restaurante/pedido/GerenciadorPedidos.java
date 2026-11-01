@@ -23,6 +23,10 @@ public class GerenciadorPedidos {
         return pedidos.values();
     }
 
+    public boolean removerPedido(int numero) {
+        return pedidos.remove(numero) != null;
+    }
+
     public double calcularTotalDoDia() {
         double total = 0;
         for (Pedido pedido : pedidos.values()) {
