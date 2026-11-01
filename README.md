@@ -121,7 +121,7 @@ mvn test
 
 ## Vídeo
 
-Link do vídeo: [inserir o link aqui]
+Link do vídeo: https://youtu.be/dBQs1M3tmpI
 
 ## Bônus
 
