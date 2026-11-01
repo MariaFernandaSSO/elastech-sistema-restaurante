@@ -17,7 +17,15 @@ public class RestauranteFacade {
     private final GerenciadorPedidos gerenciador = new GerenciadorPedidos();
 
     public List<Lanche> listarCardapio() {
-        return List.of(LancheFactory.xBurger(), LancheFactory.xSalada(), LancheFactory.xBacon());
+        return List.of(
+                LancheFactory.xBurger(),
+                LancheFactory.xSalada(),
+                LancheFactory.xBacon(),
+                LancheFactory.xEspecial(),
+                LancheFactory.xFrango(),
+                LancheFactory.xEgg(),
+                LancheFactory.pastel()
+        );
     }
 
     public Lanche criarLanche(int opcao) {
@@ -25,6 +33,10 @@ public class RestauranteFacade {
             case 1 -> LancheFactory.xBurger();
             case 2 -> LancheFactory.xSalada();
             case 3 -> LancheFactory.xBacon();
+            case 4 -> LancheFactory.xEspecial();
+            case 5 -> LancheFactory.xFrango();
+            case 6 -> LancheFactory.xEgg();
+            case 7 -> LancheFactory.pastel();
             default -> throw new IllegalArgumentException("Opcao de lanche invalida.");
         };
     }

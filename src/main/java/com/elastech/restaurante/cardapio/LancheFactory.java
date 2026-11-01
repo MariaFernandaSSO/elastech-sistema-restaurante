@@ -16,4 +16,20 @@ public final class LancheFactory {
     public static Lanche xBacon() {
         return new Lanche("X-Bacon", 22.00);
     }
+
+    public static Lanche xEspecial() {
+        return new Lanche("X-Especial", 25.00);
+    }
+
+    public static Lanche xFrango() {
+        return new Lanche("X-Frango", 20.00);
+    }
+
+    public static Lanche xEgg() {
+        return new Lanche("X-Egg", 19.00);
+    }
+
+    public static Lanche pastel() {
+        return new Lanche("Pastel", 10.00);
+    }
 }

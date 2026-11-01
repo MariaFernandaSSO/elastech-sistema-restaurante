@@ -35,4 +35,16 @@ class AppTest {
         assertEquals(32.0, lanche.getPreco(), 0.001);
         assertEquals("X-Bacon + cheddar + bacon extra", lanche.getDescricao());
     }
+
+    @Test
+    void novosItensDoCardapioSaoCriadosComPrecoCorreto() {
+        assertEquals("X-Especial", LancheFactory.xEspecial().getDescricao());
+        assertEquals(25.0, LancheFactory.xEspecial().getPreco(), 0.001);
+        assertEquals("X-Frango", LancheFactory.xFrango().getDescricao());
+        assertEquals(20.0, LancheFactory.xFrango().getPreco(), 0.001);
+        assertEquals("X-Egg", LancheFactory.xEgg().getDescricao());
+        assertEquals(19.0, LancheFactory.xEgg().getPreco(), 0.001);
+        assertEquals("Pastel", LancheFactory.pastel().getDescricao());
+        assertEquals(10.0, LancheFactory.pastel().getPreco(), 0.001);
+    }
 }
