@@ -101,6 +101,19 @@ public class MenuConsole {
         }
 
         Lanche lanche = facade.criarLanche(opcao);
+        if (!lerSimNao("Manter queijo? (s/n): ")) {
+            lanche.setQueijo(false);
+        }
+        if (!lerSimNao("Manter alface? (s/n): ")) {
+            lanche.setAlface(false);
+        }
+        if (!lerSimNao("Manter tomate? (s/n): ")) {
+            lanche.setTomate(false);
+        }
+        if (!lerSimNao("Manter cebola? (s/n): ")) {
+            lanche.setCebola(false);
+        }
+
         ItemCardapio item = lanche;
         if (lerSimNao("Adicionar cheddar (+ R$ 4,00)? (s/n): ")) {
             item = facade.adicionarCheddar(item);
